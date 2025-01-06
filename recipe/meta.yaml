@@ -6,21 +6,21 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
   sha256: e4a744ab305562770419168da86c4c1993b2fc43ce5c3cd548de31be584cd178
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - flit-core >=3.4,<4
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - pydata-sphinx-theme >=0.15.0,<0.16
     - sphinx >=5
 
@@ -31,6 +31,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   summary: A thin sphinx theme to customize pydata-sphinx-theme consistently cross PyMC websites.
