@@ -1,5 +1,5 @@
 {% set name = "pymc-sphinx-theme" %}
-{% set version = "0.15.0" %}
+{% set version = "0.16.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: e4a744ab305562770419168da86c4c1993b2fc43ce5c3cd548de31be584cd178
+  sha256: cbaf6b479f47f47ed840a8ad8e5af0ed32627d41a731d26419b520140e3ce13d
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 1
+  number: 0
 
 requirements:
   host:
@@ -21,7 +21,7 @@ requirements:
     - pip
   run:
     - python >={{ python_min }}
-    - pydata-sphinx-theme >=0.15.0,<0.16
+    - pydata-sphinx-theme >=0.16.0,<0.17,!=0.16.1
     - sphinx >=5
 
 test:
